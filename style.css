@@ -502,7 +502,7 @@ nav img {
           }
           @media screen and (max-width: 600px) {
   .card {
-    width: 400px;
+    width: 370px;
     margin: 0.5rem;
   }
 }
