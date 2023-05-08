@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="newslink.css">
+        <title>Nama Campus Podcasts(Seeta-TV)</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    </head>
+
+
+      
+<body>
+<!-- partial:index.partial.html -->
+<header>
+
+        <div class="container">
+            <nav class="navbar">
+                <a href="./index.html" class="logo"><img src="img/badge.png" alt="Logo">SEETA TV</a>
+                <ul class="nav-links">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#contact"  onclick="smoothScroll(event, 'contact')">Contact</a></li>
+                    
+                </ul>
+                <i class="fas fa-bars fa-2x" id="burger"></i>
+            </nav>
+            <section class="showcase">
+                <h1 class="animated-heading animate__animated animate__jackInTheBox">Watch all Podcasts and Talk Shows </h1>
+                <p class="animated-text animate__animated animate__fadeInUp">Get the latest updates about the schools day to day activities.</p>
+                <p class="animated-text animate__animated animate__fadeInUp">Seeta HighSchools, Eduction for a bright Future...</p>
+				<a class="button animate__animated animate__fadeInUp" href="./stream.html">Watch Live TV</a>
+              </section>
+              
+        </div>
+
+        <div class="video-container">
+            <video src="img/MOOREFIELD PRIMARY SCHOOL TALK SHOW __ BENEFITS OF INCULCATING READING HABIT IN CHILDREN.mp4" autoplay loop muted></video>
+        </div>
+
+    </header>
+
+        <div class="ticker">
+			<div class="news-title">
+			  <h5>Latest Updates</h5>
+			</div>
+			<div class="news">
+			  <marquee class="news-content" id="ticker">
+				<span id="newstext"></span>
+			  </marquee>
+			</div>
+		  </div>
+    </div>
+
+     <div class="content">
+  	<center>
+        <div class="section-header">
+		
+          <h1 class="animated-heading"> Welcome to Green Campus Podcast Channel</h1> <br>
+</center>
+         </div>
+
+		 
+            <center>
+				<div class="featured-news">
+				<h3>Featured Shows</h3>
+				<div id="container"><h1 class="style-3">"Discover our Exciting TalkShows of Our People"</h1></div>
+				</div>
+			   </center>
+			   </header>
+			  
+				<div id="video-gallery"></div>								 
+				 <!-- more video items here -->
+				 
+			   </div>
+			   
+			   
+			 
+			   <footer class="site-footer">
+				<div class="container">
+				  <div class="row">
+					
+		
+					 
+					
+					
+		
+					  <div class="text-center">
+						<ul class="social-icons">
+							
+							 <h3 id="contact">Contact Us</h3> 
+							  <hr>
+					  <ul class="contact-info">
+						<li><i class="fa fa-map-marker"></i>123 Main Street, City, State Zip Code</li>
+						<li><i class="fa fa-phone"></i>+1 (123) 456-7890</li>
+						<li><i class="fa fa-envelope"></i>info@seetatv.com</li>
+					  </ul>
+					  <ul>
+						  <li><a class="facebook" href="#"><i class="fab fa-facebook "></i></a></li>
+						  <li><a class="twitter" href="#"><i class="fab fa-twitter "></i></a></li>
+						  <li><a class="youtube" href="#"><i class="fab fa-youtube "></i></a></li>
+						  <li><a class="instagram" href="#"><i class="fab fa-instagram "></i></a></li>
+						</ul>
+						<p>&copy; 2023 Seeta TV. All Rights Reserved.</p>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </footer>		   
+</body>
+</html>
+
+<script type="module">
+ 
+	import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+	 import { getDatabase, ref, onValue, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+	 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL  } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-storage.js";
+	 import { onChildAdded } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+	 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js";
+	 // Your web app's Firebase configuration
+	 var firebaseConfig = {
+		apiKey: "AIzaSyDObNWJE1x7lQL8ExIEqR4VtPaLe2AKVIg",
+  authDomain: "greentv-4cd4d.firebaseapp.com",
+  databaseURL: "https://greentv-4cd4d-default-rtdb.firebaseio.com",
+  projectId: "greentv-4cd4d",
+  storageBucket: "greentv-4cd4d.appspot.com",
+  messagingSenderId: "400604779079",
+  appId: "1:400604779079:web:3d15a7a5dc73613046d762",
+  measurementId: "G-D0L0Z6JNFC"
+	 };
+   
+	 // Initialize Firebase
+	 const app = initializeApp(firebaseConfig);
+	 const db = getDatabase();
+	 const analytics = getAnalytics(app); 
+  
+  
+	// Get reference to the video gallery div
+	const videoGallery = document.getElementById('video-gallery');
+  
+  // Get reference to the videos collection in the database
+  const videosRef = ref(db, 'podcasts');
+  
+  // Listen for changes to the videos collection and render them in the video gallery
+  onValue(videosRef, (snapshot) => {
+	const videos = snapshot.val();
+	if (videos) {
+	  const keys = Object.keys(videos);
+	  for (let i = keys.length - 1; i >= 0; i--) {
+		const key = keys[i];
+		const video = videos[key];
+		const card = createVideoCard(video.url, video.description);
+		videoGallery.appendChild(card);
+	  }
+	}
+  });
+  // Function to create a video card element
+  function createVideoCard(videoUrl, videoDescription) {
+	const cardContainer = document.createElement('div');
+	cardContainer.classList.add('card-container');
+  
+	const card = document.createElement('div');
+	card.classList.add('card');
+  
+	const videoWrapper = document.createElement('div');
+	videoWrapper.classList.add('video-wrapper');
+	const iframe = document.createElement('iframe');
+	iframe.setAttribute('width', '560');
+	iframe.setAttribute('height', '315');
+	iframe.setAttribute('src', `https://www.youtube.com/embed/${getVideoId(videoUrl)}`);
+	iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+	iframe.setAttribute('allowfullscreen', '');
+	videoWrapper.appendChild(iframe);
+	card.appendChild(videoWrapper);
+  
+	const description = document.createElement('p');
+	description.classList.add('description');
+	description.textContent = videoDescription;
+	card.appendChild(description);
+  
+	cardContainer.appendChild(card);
+  
+	return cardContainer;
+  }
+  
+  
+  // Function to extract the video ID from a YouTube video URL
+  function getVideoId(videoUrl) {
+	const regex = /[?&]v=([^&#]*)/;
+	const match = videoUrl.match(regex);
+	return match ? match[1] : null;
+  }
+   
+	
+  
+  
+  
+  // Get a reference to the news collection in Firebase Realtime Database
+  const newsRef = ref(db, 'news');
+  
+  // Listen for new child added to the news collection and display the latest news
+  onChildAdded(newsRef, (snapshot) => {
+	const newsText = snapshot.val();
+  
+	// Update the news text element with the latest news
+	const newsTextElement = document.getElementById('newstext');
+	newsTextElement.textContent = newsText;
+  });
+  
+  
+  
+
+
+
+
+
+
+
+const burger = document.getElementById('burger');
+const navLinks = document.querySelector('.nav-links');
+
+burger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+})
+
+
+
+
+
+
+  </script>
+
+<script>
+    function smoothScroll(event, target) {
+      event.preventDefault();
+      const targetElement = document.getElementById(target);
+      targetElement.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+    </script>

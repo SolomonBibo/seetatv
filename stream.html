@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+	<head>
+		<title>Nama Campus-Live TV</title>
+		<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="./stream.css">
+		<link href="https://fonts.googleapis.com/css?family=Raleway:400,500,700,900" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/font-awesome.min.css">
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-t/KB5OWVRvLr+WigWn9nRryFgHmPwvKjtrD8/+E2f1qZq3BtUnkt8tYPpqd5xBpBtZ5qbA7teX9GJfZR/R+2Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.2/css/all.css'><link rel="stylesheet" href="./nama.css">
+		  <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+		<script type="module" src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js"></script>
+	  <script type="module" src="https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js"></script>
+	  <script type="module" src="https://www.gstatic.com/firebasejs/9.20.0/firebase-storage.js"></script>
+	  <script type="module" src="https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js"></script>
+	  
+	   
+		<script src='stream.js'></script>
+	</head>
+	<body>
+		<header>
+			<div class="head_container">
+			  <div class="logo">
+				<img src="./img/badge.png" alt="">
+			  </div>
+			  <div class="menu" id="myTopnav">
+				<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+				<ul>
+				  <li><a href="nama.html">Home</a></li>
+			
+				</ul>
+			  </div>
+			</div>
+		  </header>
+		
+			  
+			  
+		
+        <main>
+            <section class="live">
+              <h2>Live Now</h2>
+         <div id="video-gallery"></div> 
+            </section>
+      
+     
+          </main>
+
+		  <footer class="site-footer">
+			<div class="container">
+			  <div class="row">
+				   
+				<div class="text-center">
+				<ul class="social-icons">
+				
+				   <h3 id="contact">Contact Us</h3><hr>
+				<ul class="contact-info">
+				<li><i class="fa fa-map-marker"></i>123 Main Street, City, State Zip Code</li>
+				<li><i class="fa fa-phone"></i>+1 (123) 456-7890</li>
+				<li><i class="fa fa-envelope"></i>info@seetatv.com</li>
+				
+				</ul>
+				
+	
+				<ul>
+				  <li><a class="facebook" href="#"><i class="fab fa-facebook "></i></a></li>
+				  <li><a class="twitter" href="#"><i class="fab fa-twitter "></i></a></li>
+				  <li><a class="youtube" href="#"><i class="fab fa-youtube "></i></a></li>
+				  <li><a class="instagram" href="#"><i class="fab fa-instagram "></i></a></li>
+				</ul>
+				<p>&copy; 2023 Seeta TV. All Rights Reserved.</p>
+				</div>
+			  </div>
+			  </div>
+			</div>
+			</footer>
+	</body>
+</html>
+
+
+<script type="module">
+ 
+	import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+	 import { getDatabase, ref, onValue, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+	 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL  } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-storage.js";
+	 import { onChildAdded } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+	 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js";
+	 // Your web app's Firebase configuration
+	 var firebaseConfig = {
+	   apiKey: "AIzaSyD0iYIJxlamljCScCdXfZqIKybV99y7LZE",
+	   authDomain: "seetatv-7c704.firebaseapp.com",
+	   databaseURL: "https://seetatv-7c704-default-rtdb.firebaseio.com",
+	   projectId: "seetatv-7c704",
+	   storageBucket: "seetatv-7c704.appspot.com",
+	   messagingSenderId: "47823808148",
+	   appId: "1:47823808148:web:73c9bc93ee2be6324fb681"
+	 };
+   
+	 // Initialize Firebase
+	 const app = initializeApp(firebaseConfig);
+	 const db = getDatabase();
+	 const analytics = getAnalytics(app); 
+
+	
+// Get reference to the video gallery div
+const videoGallery = document.getElementById('video-gallery');
+
+// Get reference to the videos collection in the database
+const videosRef = ref(db, 'live');
+
+
+// Listen for changes to the videos collection and render them in the video gallery
+onValue(videosRef, (snapshot) => {
+  const videos = snapshot.val();
+  if (videos) {
+    const keys = Object.keys(videos);
+    const latestKey = keys[keys.length - 1]; // Get the key of the latest video
+    const latestVideo = videos[latestKey]; // Get the latest video object
+    const card = createVideoCard(latestVideo.url, latestVideo.description); // Create a card for the latest video
+    card.addEventListener('click', () => {
+      playVideo(card);
+    });
+    videoGallery.appendChild(card); // Append the latest video card to the gallery
+  }
+});
+
+
+
+// Function to create a video card element
+function createVideoCard(videoUrl, videoDescription) {
+  const cardContainer = document.createElement('div');
+  cardContainer.classList.add('card-container');
+
+  const card = document.createElement('div');
+  card.classList.add('card');
+
+  const videoWrapper = document.createElement('div');
+  videoWrapper.classList.add('video-wrapper');
+  const iframe = document.createElement('iframe');
+  iframe.setAttribute('width', '560');
+  iframe.setAttribute('height', '315');
+  iframe.setAttribute('src', `https://www.youtube.com/embed/${getVideoId(videoUrl)}`);
+  iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+  iframe.setAttribute('allowfullscreen', '');
+  videoWrapper.appendChild(iframe);
+  card.appendChild(videoWrapper);
+
+  const description = document.createElement('p');
+  description.classList.add('description');
+  description.textContent = videoDescription;
+  card.appendChild(description);
+
+  cardContainer.appendChild(card);
+
+  return cardContainer;
+}
+
+// Function to extract the video ID from a YouTube video URL
+function getVideoId(videoUrl) {
+  const regex = /[?&]v=([^&#]*)/;
+  const match = videoUrl.match(regex);
+  return match ? match[1] : null;
+}
+
+// Function to play a video
+function playVideo(card) {
+  // Get the iframe inside the card
+  const iframe = card.querySelector('iframe');
+  
+  if (currentVideo) {
+    // Pause the current video if it's not the same as the one being played
+    if (currentVideo !== iframe) {
+      currentVideo.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    } else {
+      return; // Do nothing if the current video is the same as the one being played
+    }
+  }
+  
+  // Play the new video
+  iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+  currentVideo = iframe;
+}
+
+
+
+
+ </script>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>A Level Campus (Seeta-TV)</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="google-signin-client_id" content="163248313568-utqjnl70kqj9kvqldrff7a6jqqls0a1u.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js/dist/css/lightgallery.min.css">
+<script src="https://cdn.jsdelivr.net/npm/lightgallery.js/dist/js/lightgallery.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"></script>
+        <script  type="module" src="https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js"></script>
+        <script  type="module" src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js"></script>
+        <script type="module"  src="https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js"></script>
+        <script type="module" src="https://www.gstatic.com/firebasejs/9.20.0/firebase-storage.js"></script>
+             </head>
+
+
+      
+<body>
+<!-- partial:index.partial.html -->
+<header>
+
+        <div class="container">
+            <nav class="navbar">
+                <a href="./index.html" class="logo"><img src="img/badge.png" alt="Logo">SEETA TV</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#contact"  onclick="smoothScroll(event, 'contact')">Contact</a></li>
+                    
+                </ul>
+                <i class="fas fa-bars fa-2x" id="burger"></i>
+            </nav>
+            <section class="showcase">
+                <h1 class="animated-heading animate__animated animate__jackInTheBox">A Level Campus Channel </h1>
+                <p class="animated-text animate__animated animate__fadeInUp">Get the latest updates about the schools day to day activities.</p>
+                <p class="animated-text animate__animated animate__fadeInUp">Seeta HighSchools, Eduction for a bright Future...</p>
+                <a class="button animate__animated animate__fadeInUp" href="./stream.html">Watch Live TV</a>
+              </section>
+              
+        
+
+        <div class="video-container">
+            <video src="img/y2mate.com - News Broadcast Packages  After Effects template_480p.mp4" autoplay loop muted></video>
+        </div>
+
+        
+
+    </header>
+  
+<div class="ticker">
+    <div class="news-title">
+      <h5>Latest Updates</h5>
+    </div>
+    <div class="news">
+      <marquee class="news-content" id="ticker">
+        <span id="newstext"></span>
+      </marquee>
+    </div>
+  </div>
+ 
+     <div class="content">
+  	<center>
+        <div class="section-header">
+		
+          <h1 class="animated-heading"> Welcome to  A Level Campus Channel</h1> <br>
+
+         </div>
+</center>
+  <center>
+  <div class="welcome-text">
+    <p>Get the latest updates about the schools day to day activities.
+
+      Seeta HighSchools, Eduction for a bright Future... </p>
+  </div>
+</center>
+  <center>   <h2 >Theme and Message of the  Week</h2>  </center>
+<center><div class="card1">
+      <div class="card-body">
+              <i class="fas fa-check-circle verified"></i>
+        <h3 style="color: white;" class="card-title" id="theme"></h3>
+  
+        <p class="card-text" id="message"></p>
+      </div>
+    </div>
+  </center>
+    
+    <center>
+  <h2 >Gentleman and Lady of the week </h2>
+
+<div class="card-container">     
+<div id="gentlemen-container"></div>
+<div id="ladies-container"></div>
+</div>
+<center>
+  <div class="featured-news">
+    <h2>Explore our Channel</h2>
+    <p>"Discover the Exciting Content from our Platform"</p>
+
+  </div>
+</center>
+<section class="categories">
+  <div class="row" >
+    <div class="col-md-6">
+      <div class="category">
+        <img src="img/news.jpg" alt="Category 1">
+        <div class="category-content">
+          <h3>News Link</h3>
+          <p>All Exclusive News from News Link International</p>
+          <a href="Alevelnewslink.html" class="btn btn-primary">Explore</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="category">
+        <img src="img/podcast.jpg" alt="Category 2">
+        <div class="category-content">
+          <h3>Podcasts & Interviews</h3>
+          <p>Discover All Podcasts and Interviews  </p>
+          <a href="Alevelpodcasts.html" class="btn btn-primary">Explore</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="category">
+        <img src="img/sports.jpg" alt="Category 1">
+        <div class="category-content">
+          <h3>Sports</h3>
+          <p>Disover all our sports content, archievements and Updates </p>
+          <a href="Alevelsports.html" class="btn btn-primary">Explore</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="category">
+        <img src="img/clubs.jpg" alt="Category 2">
+        <div class="category-content">
+          <h3>Gallery</h3>
+          <p>View a wide range of Pictures from our Gallery </p>
+          <a href="Alevelgallery.html" class="btn btn-primary">Explore</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  
+</section>
+</center>
+<center>
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+    
+
+     
+   
+      <div class="text-center">
+      <ul class="social-icons">
+        
+         <h3 id="contact">Contact Us</h3>
+      <ul class="contact-info">
+      <li><i class="fa fa-map-marker"></i>123 Main Street, City, State Zip Code</li>
+      <li><i class="fa fa-phone"></i>+1 (123) 456-7890</li>
+      <li><i class="fa fa-envelope"></i>info@seetatv.com</li>
+      </ul>
+      <ul>
+        <li><a class="facebook" href="#"><i class="fab fa-facebook "></i></a></li>
+        <li><a class="twitter" href="#"><i class="fab fa-twitter "></i></a></li>
+        <li><a class="youtube" href="#"><i class="fab fa-youtube "></i></a></li>
+        <li><a class="instagram" href="#"><i class="fab fa-instagram "></i></a></li>
+       
+      </ul>
+      <p>&copy; 2023 Seeta TV. All Rights Reserved.</p>
+      <button id="signin-button" class="g-signin2" data-onsuccess="onSignIn">Sign In(MGMT ONLY)</button>
+      </div>
+    </div>
+    </div>
+  </div>
+  </footer>
+ </center>
+  </div>
+</body>
+</html>
+  
+
+<!-- partial -->
+<script type="module" >
+
+  const burger = document.getElementById('burger');
+const navLinks = document.querySelector('.nav-links');
+
+burger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+})
+</script>
+
+
+<script type="module">
+ 
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+  import { getDatabase, ref, onValue, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+  import { getStorage, ref as storageRef, uploadBytes, getDownloadURL  } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-storage.js";
+  import { onChildAdded } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js";
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAisBpwnYt14S4NiLbcOiAhdINsqwSYJiI",
+  authDomain: "aleveltv-75194.firebaseapp.com",
+  databaseURL: "https://aleveltv-75194-default-rtdb.firebaseio.com",
+  projectId: "aleveltv-75194",
+  storageBucket: "aleveltv-75194.appspot.com",
+  messagingSenderId: "440342498130",
+  appId: "1:440342498130:web:20e2eb670b1cb2c39cc88b",
+  measurementId: "G-VTR1KGT4CW"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase();
+  const analytics = getAnalytics(app); 
+
+
+
+
+
+// Get the news list element
+const newsList = document.getElementById('news-list');
+
+// Listen for updates to the 'news' node in the Firebase database
+onValue(ref(db, 'messages'), (snapshot) => {
+  // Get the news data from the snapshot
+  const newsData = snapshot.val();
+
+  // Check if there is any news data
+  if (newsData) {
+    // Get the latest news item
+    const latestNews = Object.values(newsData)[Object.values(newsData).length - 1];
+
+    // Display the latest news item in the news list element
+    const themeElement = document.getElementById('theme');
+    const messageElement = document.getElementById('message');
+    themeElement.textContent = latestNews.theme;
+    messageElement.textContent = latestNews.message;
+  }
+});
+
+
+// Get a reference to the gentlemen collection in Firebase Realtime Database
+const gentlemenRef = ref(getDatabase(), "gentlemen");
+const ladiesRef = ref(getDatabase(), "ladies");
+
+// Listen for changes to the gentlemen collection and display the data in cards
+onValue(gentlemenRef, (snapshot) => {
+  const gentlemen = snapshot.val();
+  const gentlemenContainer = document.getElementById("gentlemen-container");
+  gentlemenContainer.innerHTML = "";
+
+  // Convert the gentlemen object to an array
+  const gentlemenArray = Object.keys(gentlemen).map((key) => {
+    return {
+      key: key,
+      ...gentlemen[key],
+    };
+  });
+
+  // Sort the gentlemen by timestamp (assuming a `timestamp` property exists)
+  gentlemenArray.sort((a, b) => b.timestamp - a.timestamp);
+
+  // Display the latest gentleman in a card
+  if (gentlemenArray.length > 0) {
+    const gentleman = gentlemenArray[gentlemenArray.length - 1];
+    const card = createCard(gentleman.name, gentleman.description, gentleman.imageUrl);
+    gentlemenContainer.appendChild(card);
+  }
+});
+
+// Listen for changes to the ladies collection and display the data in cards
+onValue(ladiesRef, (snapshot) => {
+  const ladies = snapshot.val();
+  const ladiesContainer = document.getElementById("ladies-container");
+  ladiesContainer.innerHTML = "";
+
+  // Convert the ladies object to an array
+  const ladiesArray = Object.keys(ladies).map((key) => {
+    return {
+      key: key,
+      ...ladies[key],
+    };
+  });
+
+  // Sort the ladies by timestamp (assuming a `timestamp` property exists)
+  ladiesArray.sort((a, b) => b.timestamp - a.timestamp);
+
+  // Display the latest lady in a card
+  if (ladiesArray.length > 0) {
+    const lady = ladiesArray[ladiesArray.length - 1];
+    const card = createCard(lady.name, lady.description, lady.imageUrl);
+    ladiesContainer.appendChild(card);
+  }
+});
+
+// Function to create a card element
+function createCard(title, description, imageUrl) {
+  const card = document.createElement("div");
+  card.classList.add("card");
+
+  if (imageUrl) {
+    const picture = document.createElement("picture");
+    const sourceWebp = document.createElement("source");
+    const sourceFallback = document.createElement("source");
+    const image = document.createElement("img");
+
+    sourceWebp.type = "image/webp";
+    sourceWebp.srcset = `${imageUrl}.webp`;
+    sourceFallback.srcset = `${imageUrl}.jpg, ${imageUrl}.png`;
+    image.src = `${imageUrl}.jpg`;
+
+    picture.appendChild(sourceWebp);
+    picture.appendChild(sourceFallback);
+    picture.appendChild(image);
+    card.appendChild(picture);
+  }
+
+  const titleElement = document.createElement("h2");
+  titleElement.textContent = title;
+  const iconElement = document.createElement("i");
+  iconElement.classList.add("fas", "fa-check-circle", "verified-icon");
+  iconElement.style.color = "#00bfff"; // Light blue
+  titleElement.appendChild(iconElement);
+  card.appendChild(titleElement);
+
+  const descriptionElement = document.createElement("p");
+  descriptionElement.textContent = description;
+  card.appendChild(descriptionElement);
+
+  return card;
+}
+
+
+
+// Get a reference to the news collection in Firebase Realtime Database
+const newsRef = ref(db, 'news');
+
+// Listen for new child added to the news collection and display the latest news
+onChildAdded(newsRef, (snapshot) => {
+  const newsText = snapshot.val();
+
+  // Update the news text element with the latest news
+  const newsTextElement = document.getElementById('newstext');
+  newsTextElement.textContent = newsText;
+});
+
+
+</script>
+
+<script>
+function smoothScroll(event, target) {
+  event.preventDefault();
+  const targetElement = document.getElementById(target);
+  targetElement.scrollIntoView({
+    behavior: 'smooth'
+  });
+}
+</script>

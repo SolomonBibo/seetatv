@@ -1,0 +1,354 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+header {
+  background-color: #1c3664;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color:white;
+  height: 70px;
+  width: 100%;
+}
+
+.head_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo img {
+  height: 70px;
+  width: auto;
+  margin-left:20px;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.menu ul li {
+  margin: 0 15px;
+}
+
+.menu ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.menu ul li a:hover {
+  color: #f00;
+}
+
+.icon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .menu ul {
+    flex-direction: column;
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background-color: #1c3664;
+    padding-top: 80px;
+    text-align: center;
+    transition: all 0.3s ease-in;
+  }
+
+  .menu ul li {
+    margin: 10px 0;
+    display: block;
+  }
+
+  .menu ul li a {
+    font-size: 20px;
+    color: #333;
+  }
+
+  .icon {
+    display: block;
+    cursor: pointer;
+  }
+
+  .menu.responsive {
+    left: 0;
+  }
+}
+
+.live {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.live h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+#live {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#live video {
+  width: 80%;
+  max-width: 800px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+ /* Style the hamburger icon */
+ .icon {
+  display: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  margin-top: 7px;
+  margin-right: 10px;
+}
+
+/* Style the menu links */
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.menu li {
+  float: left;
+}
+
+.menu li a {
+  display: block;
+  color: #333;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.menu li a:hover {
+  background-color: #ddd;
+}
+
+/* Style the responsive class - to add the dropdown menu on small screens */
+@media screen and (max-width: 600px) {
+  .menu ul {
+    flex-direction: column;
+  }
+
+  .menu li {
+    float: none;
+  }
+
+  .icon {
+    display: block;
+  }
+
+  .menu.responsive {
+    position: relative;
+  }
+
+  .menu.responsive ul {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  .menu.responsive li {
+    float: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .menu.responsive li:last-child {
+    border-bottom: none;
+  }
+
+  .menu.responsive li a {
+    display: block;
+    text-align: left;
+  }
+}
+
+
+/* Style for the video gallery */
+#video-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius:20px;
+}
+
+/* Style for the video card container */
+.card-container {
+  margin: 10px;
+  width: 90%;
+  height: 70%;
+  border-radius:20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.95);
+}
+
+/* Style for the video card */
+.card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Style for the video iframe wrapper */
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+}
+
+/* Style for the video iframe */
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius:20px;
+  border-color:transparent;
+}
+
+/* Style for the video description */
+.description {
+  padding: 10px;
+  text-align: center;
+}
+	
+
+/* Footer Styles */
+
+.site-footer {
+	padding: 5% 3%; /* Use percentage values for responsive padding */
+	color: #fff;
+	margin-top:30px;
+	background:#222;
+  }
+  
+  /* For larger screens, you can increase the padding values */
+  @media screen and (min-width: 768px) {
+	.site-footer {
+	  padding: 6% 4%; /* Use larger padding values for screens wider than 768px */
+	}
+  }
+  
+  
+  .site-footer h3 {
+	font-size: 20px;
+	margin-bottom: 20px;
+	color: #fff;
+  }
+  
+  .site-footer p {
+	font-size: 14px;
+	line-height: 1.6;
+	color: #fff;
+  }
+  
+  .footer-links li {
+	margin-bottom: 10px;
+  }
+  
+  .footer-links li a {
+	color: #fff;
+	text-decoration: none;
+  }
+  
+  .footer-links li a:hover {
+	color: #dcdcdc;
+  }
+  
+  .contact-info li {
+	margin-bottom: 10px;
+  }
+  
+  .contact-info li i {
+	margin-right: 10px;
+  }
+  
+  .social-icons {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+  }
+  
+  .social-icons li {
+	display: inline-block;
+	margin-right: 10px;
+  }
+  
+  .social-icons a {
+	color: #fff;
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%;
+	transition: all 0.2s ease-in-out;
+  }
+  
+  .social-icons a:hover {
+	background-color: #dcdcdc;
+	color: #222;
+  }
+  
+  .facebook {
+	background-color: #3b5998;
+	color: white;
+  }
+  
+  .twitter {
+	background-color: #55acee;
+  }
+  
+  .youtube {
+	background-color: #cd201f;
+  }
+  
+  .instagram {
+  background: #DC2424;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #4A569D, #DC2424);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #4A569D, #DC2424); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+  }
+  
+  .site-footer p.small-print {
+	font-size: 12px;
+	color: #dcdcdc;
+	margin-top: 30px;
+  }
+  
+  .site-footer hr {
+	border-top: 1px solid #333;
+	margin: 30px 0;
+  }
+  
+  .site-footer .text-center {
+	text-align: center;
+  }
+  
+  .site-footer .text-center p {
+	margin-bottom: 0;
+  }
+  

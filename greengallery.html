@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>Green Campus Gallery(Seeta-TV)</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"></script>
+<script  type="module" src="https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js"></script>
+<script  type="module" src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js"></script>
+<script type="module"  src="https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.20.0/firebase-storage.js"></script>
+    </head>
+
+
+
+<!-- partial:index.partial.html -->
+<header>
+
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo"><img src="img/badge.png" alt="Logo">Seeta TV</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#contact"  onclick="smoothScroll(event, 'contact')">Contact</a></li>
+                    
+                </ul>
+                <i class="fas fa-bars fa-2x" id="burger"></i>
+            </nav>
+            <section class="showcase">
+                <h1 class="animated-heading animate__animated animate__jackInTheBox">Green Campus Gallery</h1>
+                <p class="animated-text animate__animated animate__fadeInUp">Get the latest updates about the our schools day to day activities.</p>
+                <p class="animated-text animate__animated animate__fadeInUp">Seeta High Schools, Eduction for a bright Future...</p>
+                <a class="button animate__animated animate__fadeInUp" href="./stream.html">Watch Live TV</a>
+
+              </section>
+              
+        </div>
+        <div class="video-container">
+            <video src="img/y2mate.com - News Broadcast Packages  After Effects template_480p.mp4" autoplay loop muted></video>
+        </div>
+
+        
+        <div class="ticker">
+          <div class="news-title">
+            <h5>Latest Updates</h5>
+          </div>
+          <div class="news">
+            <marquee class="news-content" id="ticker">
+              <span id="newstext"></span>
+            </marquee>
+          </div>
+        </div>
+
+        <center>
+            <div class="section-header">
+            
+              <h1 class="animated-heading"> Welcome to  our Gallery</h1> <br>
+    </center>
+             </div>
+    </header>
+
+         
+<body>
+        <div id="image-container"></div>
+
+        <footer class="site-footer">
+            <div class="container">
+              <div class="row">
+                
+    
+                 
+    
+                  <div class="text-center">
+                    <ul class="social-icons">
+                        
+                         <h3 id="contact">Contact Us</h3>
+                  <ul class="contact-info">
+                    <li><i class="fa fa-map-marker"></i>123 Main Street, City, State Zip Code</li>
+                    <li><i class="fa fa-phone"></i>+1 (123) 456-7890</li>
+                    <li><i class="fa fa-envelope"></i>info@seetatv.com</li>
+                  </ul>
+                  <ul>
+                      <li><a class="facebook" href="#"><i class="fab fa-facebook "></i></a></li>
+                      <li><a class="twitter" href="#"><i class="fab fa-twitter "></i></a></li>
+                      <li><a class="youtube" href="#"><i class="fab fa-youtube "></i></a></li>
+                      <li><a class="instagram" href="#"><i class="fab fa-instagram "></i></a></li>
+                    </ul>
+                    <p>&copy; 2023 Seeta TV. All Rights Reserved.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>  
+</body>
+</html>
+
+<script type="module">
+ 
+	import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+	 import { getDatabase, ref, onValue, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+	 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL  } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-storage.js";
+	 import { onChildAdded } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+	 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js";
+	 // Your web app's Firebase configuration
+	 var firebaseConfig = {
+    apiKey: "AIzaSyDObNWJE1x7lQL8ExIEqR4VtPaLe2AKVIg",
+  authDomain: "greentv-4cd4d.firebaseapp.com",
+  databaseURL: "https://greentv-4cd4d-default-rtdb.firebaseio.com",
+  projectId: "greentv-4cd4d",
+  storageBucket: "greentv-4cd4d.appspot.com",
+  messagingSenderId: "400604779079",
+  appId: "1:400604779079:web:3d15a7a5dc73613046d762",
+  measurementId: "G-D0L0Z6JNFC"
+	 };
+   
+	 // Initialize Firebase
+	 const app = initializeApp(firebaseConfig);
+	 const db = getDatabase();
+	 const analytics = getAnalytics(app); 
+  
+  // Get a reference to the images node
+const imageContainer = document.getElementById("image-container");
+
+// Listen for new image uploads
+onChildAdded(ref(db, "uploads"), (snapshot) => {
+  const upload = snapshot.val();
+
+  // Create an img element for the image
+  const img = document.createElement("img");
+  img.src = upload.downloadURL;
+  img.alt = upload.description;
+
+  // Create a div element for the image description
+  const desc = document.createElement("div");
+  desc.textContent = upload.description;
+
+  // Create a card element for the image and description
+  const card = createCard(upload.description, img);
+
+  // Append the card element to the imageContainer
+  imageContainer.appendChild(card);
+});
+
+// Function to create a card element for an image and its description
+function createCard(description, img) {
+  const card = document.createElement("div");
+  card.classList.add("card");
+
+  // Add the image to the card
+  card.appendChild(img);
+
+  // Add the description to the card
+  const descriptionElement = document.createElement("p");
+  descriptionElement.textContent = description;
+  card.appendChild(descriptionElement);
+
+  return card;
+}
+
+
+
+
+// Get a reference to the news collection in Firebase Realtime Database
+const newsRef = ref(db, 'news');
+
+// Listen for new child added to the news collection and display the latest news
+onChildAdded(newsRef, (snapshot) => {
+  const newsText = snapshot.val();
+
+  // Update the news text element with the latest news
+  const newsTextElement = document.getElementById('newstext');
+  newsTextElement.textContent = newsText;
+});
+
+
+const burger = document.getElementById('burger');
+const navLinks = document.querySelector('.nav-links');
+
+burger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+})
+</script>
+
+
+
+<script>
+    function smoothScroll(event, target) {
+      event.preventDefault();
+      const targetElement = document.getElementById(target);
+      targetElement.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+    </script>

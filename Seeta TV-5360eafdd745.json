@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "seeta-tv-1682812618205",
+  "private_key_id": "5360eafdd74515bd9d34ef3d2abb6a61c643f984",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDCaL3w15mPwiIA\nBG4UzmyJi60aKIJn5KtIipwOEdR9q5JRyvc5I8tpEr9cEliv29li8Vqysmdu7Pej\nDQ6j0UQmBme69/uYi2PD/hb/R+qBQuJZX6qtXNFfqyOqgBncXha+0BbEbrA7KLoD\nmCULrXPVFQczoxCcr9vBfZdVmqOjmMugSHnBUaY/3dJYWeaXDZUIfMWdDoN411zI\nxZIG1mCsqjmSrGes6zThpBzSz6WvuAsMV7vVkpYMRaIWASY/Nkc9i3x55LlgwhDw\nUYnmX3PTHDn4RBGysCNOnLg4UOSyAJ8gPA0FI0j2MYKugzd5L4kawLNmp5akyZcO\nH4YIlYSFAgMBAAECggEAHfOnN+Dvrr9ZH6mPEDORc0uKutn85WbMoNuCGYTTuRzi\n6SkdF7eVEjYqN1Q4R7fWcTEAKUHlP6jQqlVLqR+HoVghSSQFpkXrc/nEr0X0MkAM\nwXpEwHrpYxTp5M3hrhrs5C8JIvBuxF6M8hrRsk/h5bVcq6720z0g3VmtJCo0BfMy\nLfpOEnDdWu0AKIPe4c5ii/fbMWEGOk4vHnY2F2RPmkrb/B9kxTVz+xIGjb2aBczD\nHoMIE6upFPERGGOGl/yIZY+L/yaJW1PgLxY+pJBxEotJQvKNtcuvl2p7wr8/DyPe\nL1uEDKXVAs51Wi7iwFMXbn36guBgN0raXykaFOdvQQKBgQD+bRCPzzECOjtpOLuf\nfSrBQlOtnVBmo2/CQvrpeG48jxxKSdiLkfXqSxoLQQxcwF9sLbAJAJzqhZpBNVW3\nOqIJu4Iu3Q2v53Ptli845ABDiEGENWL0TKNF3ffw+f9FLU/hKY18RHKoTaKZwK0y\nf+PVt6M7baLKrfUq4mVzZp+VNQKBgQDDnKDaYoYP6KvKHXZivsg4zRJsUhZN1axT\n5SpOJ1uQywPmb7YLzm8WZWcqZZ4SNe/2B7MRTwVR29r3khToMoR116ISmJejlE0p\nYyYz1OJuNRdpnffxMpjIxhw9/vv05qkNMHitgAPFrz1kfQ4asmjjsn0Ar36r39T2\np4TMOWmsEQKBgHbiQY3hE5Zl3WLyVoFUvEinlHAYhPwgvFT6dUHouyHjASYZUW0O\nG+mJhDbkA0HHxg7HXm0mcywGl6iGonHGnPaNPmxlcELUlM/ckF4184Wawnpjc8SR\nlu1LpdJdDpGldaDRiMIbPbQ06piLdqKVLcGsWEKpnRq1pEyQkzUUK9dNAoGBAKci\nYN23aMyXBJFA8zITyIef0Kn0yVHfy8oy+B6myjnA/KgbsvQLgickpS04fgMZStpw\nYbPcTLNQopr9mhd7cmotwDEbaBVAVV2TdcS7lGyNuF9ptbvEe36wptjh0O3DV5YJ\nYFL+GjsCK/Z8U1zEK5LBosS/LgA004WcRH8qXvvBAoGBAISr4G9ILPS91GLwJ2DW\nzNZ20h5NCJF/OAVRat1ZGPOygjXAu3LEckXsVptfiU9cZzHWQTltTvimtpXYTe8s\nluBlqeNb7hXx8FFmMbzugsaWC9VBPSxjKy37vIMDTjwpbtttVLh/QDCD5nlhDyPd\nEA0OaJMllbxV69Uo/EU60xtZ\n-----END PRIVATE KEY-----\n",
+  "client_email": "starting-account-wm1u5vpezfcx@seeta-tv-1682812618205.iam.gserviceaccount.com",
+  "client_id": "100834524783391528277",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/starting-account-wm1u5vpezfcx%40seeta-tv-1682812618205.iam.gserviceaccount.com"
+}

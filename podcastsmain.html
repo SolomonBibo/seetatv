@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+ <title>News-Link</title>
+ <script  type="module" src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js"></script>
+<script type="module"  src="https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js"></script>
+
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css'><link rel="stylesheet" href="upload.css">
+</head>
+<body>
+
+          <!--News Fliker -->
+          <a href="#" class="back-button" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> Back
+          </a>
+               
+          
+        <div class="card1">
+          <div class="card-header">
+            Upload Video to Podcasts
+          </div>
+          <div class="card-body">
+            <div id="video-form-container">
+  <form id="video-form">
+    <label for="video-url">Video URL:</label>
+    <input type="text" id="video-url" name="video-url" required>
+
+    <label for="video-description">Video Description:</label>
+    <textarea id="video-description" name="video-description"></textarea>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="video-preview"></div>
+
+  <div id="success-message" style="display:none;">
+    <p>Your data has been submitted successfully!</p>
+  </div>
+
+  <div id="loader" style="display:none;">
+    <i class="fas fa-sync fa-spin"></i>
+    <p>Please wait while we process your request...</p>
+  </div>
+</div>
+
+    <!--end-->      
+    
+    <!--gents of the week-->
+
+   
+
+</body>
+</html>
+
+
+<script type="module">
+ 
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+  import { getDatabase, ref, onValue, orderByChild, limitToLast, push, set } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+  import { getStorage, ref as storageRef, uploadBytes, getDownloadURL  } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-storage.js";
+  import { onChildAdded } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js";
+     // Your web app's Firebase configuration
+     const firebaseConfig = {
+      apiKey: "AIzaSyDxgH_wPaUEBIAzvinpPBOMsV66g2iXYe0",
+  authDomain: "seeta-dbea3.firebaseapp.com",
+  databaseURL: "https://seeta-dbea3-default-rtdb.firebaseio.com",
+  projectId: "seeta-dbea3",
+  storageBucket: "seeta-dbea3.appspot.com",
+  messagingSenderId: "64180736056",
+  appId: "1:64180736056:web:8bb3c529a07486d3c856cd",
+  measurementId: "G-PV42RWHS09"
+     };
+   
+   
+    // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase();
+  const analytics = getAnalytics(app);
+
+      
+  // Get references to the form elements
+  const videoUrlInput = document.getElementById('video-url');
+  const videoPreviewSection = document.getElementById('video-preview');
+  const videoDescriptionTextarea = document.getElementById('video-description');
+  const videoForm = document.getElementById('video-form');
+  
+  // Add an event listener for when the form is submitted
+  videoForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+  
+    // Get the form data
+    const videoUrl = videoUrlInput.value;
+    const videoDescription = videoDescriptionTextarea.value;
+  
+    // Save the data to Firebase
+    const videosRef = ref(db, 'podcasts');
+    const newVideoRef = push(videosRef);
+    set(newVideoRef, {
+      url: videoUrl,
+      description: videoDescription
+    });
+  
+    // Clear the form
+    videoUrlInput.value = '';
+    videoPreviewSection.innerHTML = '';
+    videoDescriptionTextarea.value = '';
+  });
+  
+  // Add an event listener for when the video URL input changes
+  videoUrlInput.addEventListener('input', function() {
+    const videoUrl = videoUrlInput.value;
+  
+    // Check if the URL is a valid YouTube video URL
+    const videoIdMatch = videoUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?.*v=|embed\/))([\w-]{11})/);
+    if (videoIdMatch) {
+      // Get the YouTube video ID
+      const videoId = videoIdMatch[1];
+  
+      // Create the video preview iframe
+      const iframe = document.createElement('iframe');
+      iframe.setAttribute('width', '560');
+      iframe.setAttribute('height', '315');
+      iframe.setAttribute('src', 'https://www.youtube.com/embed/' + videoId);
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      iframe.setAttribute('allowfullscreen', '');
+  
+      // Add the video preview to the section
+      videoPreviewSection.innerHTML = '';
+      videoPreviewSection.appendChild(iframe);
+    } else {
+      // Clear the video preview section
+      videoPreviewSection.innerHTML = '';
+    }
+  });
+</script>

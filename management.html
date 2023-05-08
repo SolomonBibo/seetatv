@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title> TV Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css'><link rel="stylesheet" href="management.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class='dashboard'>
+    <div class="dashboard-nav">
+        <header><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#"
+                                                                                   class="brand-logo"><img src="./Seeta TV/dist/img/badge.png" alt="Seeta TV" height="50">
+                                                                                   <span>SEETA TV</span></a></header>
+        <nav class="dashboard-nav-list"><a
+                href="management.html" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i> dashboard
+        </a><a
+                href="upload.html" class="dashboard-nav-item"><i class="fas fa-file-upload"></i> Upload </a>
+        <a href="#!" class="dashboard-nav-item "><i
+                    class="fas fa-photo-video"></i> Media </a>
+                
+<a href="#!" class="dashboard-nav-item ">
+              <i  class="fas fa-broadcast-tower"></i>Go Live </a>
+               
+            <a href="#" class="dashboard-nav-item"><i class="fas fa-cogs"></i> Settings </a><a
+                    href="#" class="dashboard-nav-item"><i class="fas fa-user"></i> Profile </a>
+          <div class="nav-item-divider"></div>
+          <a
+                    href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Logout </a>
+        </nav>
+    </div>
+
+
+    <!--Pages-->
+
+    <!--dashboard-->
+
+    <div class='dashboard-app'>
+
+        <div class='dashboard-content'>
+            <div class='container'>
+                <div class='card'>
+                    <div class='card-header'>
+                        <h1>Welcome </h1>
+                    </div>
+                    <div class='card-body'>
+                      
+                        <p>Your account type is: Administrator</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="visits">
+            <h3>People watching:</h3>
+            <div class="count">0</div>
+          </div>
+        <main>
+            <section class="data">
+              <h2>Data Overview</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed metus vel lacus fringilla convallis. Vestibulum vel pulvinar arcu.</p>
+              <div class="chart-container">
+                <canvas id="web-visits-chart"></canvas>
+                <!-- Insert chart here -->
+
+              </div>
+            </section>
+            <section class="users">
+              <h2>User Overview</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed metus vel lacus fringilla convallis. Vestibulum vel pulvinar arcu.</p>
+              <ul>
+                <li>
+                  <div class="user-avatar"><img src="user1.jpg" alt="User Avatar"></div>
+                  <div class="user-details">
+                    <h3>John Doe</h3>
+                    <p>Marketing Manager</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="user-avatar"><img src="user2.jpg" alt="User Avatar"></div>
+                  <div class="user-details">
+                    <h3>Jane Smith</h3>
+                    <p>Operations Manager</p>
+                  </div>
+                </li>
+              </ul>
+            </section>
+          </main>
+
+
+    </div>
+    </div>
+</div>
+
+
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
+
+<script>
+  	// Get the canvas element and create a new chart instance
+		var ctx = document.getElementById('web-visits-chart').getContext('2d');
+		var chart = new Chart(ctx, {
+			type: 'line', // Set the chart type to line
+			data: {
+				labels: [], // Initialize the chart with empty labels array
+				datasets: [{
+					label: 'Web Visits', // Set the dataset label
+					data: [], // Initialize the chart with empty data array
+					backgroundColor: 'rgba(0, 123, 255, 0.2)', // Set the fill color
+					borderColor: 'rgba(0, 123, 255, 1)', // Set the line color
+					borderWidth: 2 // Set the line width
+				}]
+			},
+			options: {
+				responsive: true, // Set the chart to be responsive
+				maintainAspectRatio: false, // Set the aspect ratio to be fluid
+				scales: {
+					xAxes: [{
+						type: 'time', // Set the x-axis to use time scale
+						time: {
+							unit: 'minute' // Set the time unit to be minute
+						},
+						distribution: 'linear' // Set the x-axis distribution to be linear
+					}]
+				}
+			}
+		});
+
+		// Function to update the chart with new data
+		function updateChart(data) {
+			// Add the new data to the chart's dataset
+			chart.data.datasets[0].data.push(data);
+			// Add the current time as a new label
+			chart.data.labels.push(Date.now());
+			// Remove the oldest data point if the chart's data length exceeds 10
+			if (chart.data.labels.length > 10) {
+				chart.data.labels.shift();
+				chart.data.datasets[0].data.shift();
+			}
+			// Update the chart
+			chart.update();
+		}
+
+</script>
